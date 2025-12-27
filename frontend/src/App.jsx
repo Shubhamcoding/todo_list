@@ -42,39 +42,58 @@ function TodoApp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 p-4">
+      <div
+        className="
+          mx-auto bg-white rounded-2xl shadow-lg
+          w-full max-w-md
+          md:max-w-2xl
+          lg:max-w-4xl
+          p-6 md:p-8
+        "
+      >
         {/* Header */}
-        <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-6">
           To-Do List
         </h2>
 
-        {/* Input */}
-        <div className="flex gap-2 mb-5">
+        {/* Input Section */}
+        <div className="flex flex-col md:flex-row gap-3 mb-6">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a new task..."
-            className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="
+              flex-1 rounded-lg border border-gray-300 px-4 py-3
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+            "
           />
           <button
             onClick={addTodo}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="
+              bg-blue-600 text-white px-6 py-3 rounded-lg
+              hover:bg-blue-700 transition
+              md:w-auto w-full
+            "
           >
             Add
           </button>
         </div>
 
         {/* Todo List */}
-        <ul className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {todos.map((todo) => (
-            <li
+            <div
               key={todo.id}
-              className="flex items-center justify-between bg-gray-50 px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+              className="
+                flex items-center justify-between
+                bg-gray-50 px-4 py-3 rounded-xl
+                hover:bg-gray-100 transition
+              "
             >
               <span
                 onClick={() => toggleTodo(todo.id)}
-                className={`cursor-pointer ${
+                className={`cursor-pointer select-none ${
                   todo.completed
                     ? "line-through text-gray-400"
                     : "text-gray-800"
@@ -89,13 +108,13 @@ function TodoApp() {
               >
                 ✕
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
 
         {/* Empty State */}
         {todos.length === 0 && (
-          <p className="text-center text-gray-400 text-sm mt-4">
+          <p className="text-center text-gray-400 text-sm mt-6">
             No tasks yet. Add one above 👆
           </p>
         )}
